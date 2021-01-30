@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GenerateObjects : MonoBehaviour
 {
-    public Sprite[] SpaceSprites;
-    public GameObject SpaceObjPrefab;
+    public GameObject[] SpaceObjPrefabs;
+    
+    //public Sprite[] SpaceSprites;
+    //public GameObject SpaceObjPrefab;
 
     public Transform ObjHolder;
     
@@ -38,9 +40,17 @@ public class GenerateObjects : MonoBehaviour
                                  TopLeftCorner;
                 newPos.x += start.x;
                 newPos.y -= start.y;
+                    
+                    
                 //spawn object at newPos
-                GameObject spaceObj = Instantiate(SpaceObjPrefab, newPos, Quaternion.identity, ObjHolder);
-                spaceObj.GetComponent<SpriteRenderer>().sprite = SpaceSprites[Random.Range(0, SpaceSprites.Length)];
+                GameObject spaceObj = Instantiate(SpaceObjPrefabs[Random.Range(0, SpaceObjPrefabs.Length)], newPos, Quaternion.identity, ObjHolder);
+
+                Color newColor = Color.white;
+                newColor.a = Random.Range(0.2f, 1f);
+                float newSize = Random.Range(.6f, 1.4f);
+                Vector2 size = new Vector2(newSize, newSize);
+                spaceObj.transform.localScale = size;
+                spaceObj.GetComponent<SpriteRenderer>().color = newColor; 
                 
                 start.x += ChunkSize.x;
             }
