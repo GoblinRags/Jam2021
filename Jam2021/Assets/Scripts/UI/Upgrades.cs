@@ -7,12 +7,14 @@ public class Upgrades : MonoBehaviour
 {
     public UpgradeUI UpgUIScript;
     public int[] Costs = {50, 75, 100};
-    public enum UpgTypes {Lens, Electrical, Gears, BatteryBoost, Parallax, Sas}
+    public enum UpgTypes {Lens, Magnifier, Electrical, Gears, BatteryBoost, Parallax, Sas}
     public UpgTypes UpgType;
     public int UpgLevel;
     public int CurrentCost;
     
     private bool IsMaxed;
+
+    AudioSource audioSource;
     private void Awake()
     {
         UpgradeManager.UpgradesArray.Add(this);
@@ -22,7 +24,7 @@ public class Upgrades : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = SoundManager.Instance.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,11 +37,33 @@ public class Upgrades : MonoBehaviour
         //NOTE: For steve to add sfx
         switch (UpgType)
         {
+            case UpgTypes.Magnifier:
+                //play sfx
+                SoundManager.Instance.PlaySfx(12, .6f);
+                break;
             case UpgTypes.Lens:
-                //play lens sfx
+                //play sfx
+                SoundManager.Instance.PlaySfx(6, 1f);
                 break;
             case UpgTypes.Electrical:
-                //play sfx -etc
+                //play sfx
+                SoundManager.Instance.PlaySfx(7, 1.3f);
+                break;
+            case UpgTypes.Gears:
+                //play sfxs
+                SoundManager.Instance.PlaySfx(8, .8f);
+                break;
+            case UpgTypes.Sas:
+                //play sfx
+                SoundManager.Instance.PlaySfx(11, .6f);
+                break;
+            case UpgTypes.BatteryBoost:
+                //play sfx
+                SoundManager.Instance.PlaySfx(9, .8f);
+                break;
+            case UpgTypes.Parallax:
+                //play sfx
+                SoundManager.Instance.PlaySfx(10, .8f);
                 break;
         }
         UpgLevel += 1;
