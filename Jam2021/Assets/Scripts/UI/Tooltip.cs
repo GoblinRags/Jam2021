@@ -13,6 +13,9 @@ public class Tooltip : MonoBehaviour
     public RectTransform ParentRect;
     public RectTransform RT;
     public float PaddingSize = 10f;
+
+    public static float FadeTimer = 0f;
+    public static bool CanFade;
     private void Awake()
     {
         if (Instance != null)
@@ -26,13 +29,9 @@ public class Tooltip : MonoBehaviour
         }
         //ShowTooltip("HiHIHIHIHI");
         ParentRect = transform.parent.GetComponent<RectTransform>();
+        Instance.HideTooltip();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        ShowTooltip("Kewkwkewk haha");
-    }
 
     // Update is called once per frame
     void Update()
@@ -41,6 +40,13 @@ public class Tooltip : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(ParentRect, Input.mousePosition, Cam, out localPos);
         localPos.x += RT.sizeDelta.x;
         transform.localPosition = localPos;
+        
+        if (CanFade)
+           FadeTimer += Time.deltaTime;
+        if (FadeTimer >= .25f)
+        {
+            //Instance.HideTooltip();
+        }
     }
 
     private void ShowTooltip(string text)
@@ -56,17 +62,19 @@ public class Tooltip : MonoBehaviour
     private void HideTooltip()
     {
         gameObject.SetActive(false);
-        
     }
 
     public static void ShowToolTipStatic(string text)
     {
         Instance.ShowTooltip(text);
+        //CanFade = false;
+        FadeTimer = 0f;
     }
 
     public static void HideToolTipStatic()
     {
         Instance.HideTooltip();
+        //CanFade = true;
     }
     
 }

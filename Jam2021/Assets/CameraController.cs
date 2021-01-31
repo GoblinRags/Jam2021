@@ -89,6 +89,7 @@ public class CameraController : MonoBehaviour
     public IEnumerator Lerp(ZoomState state, Vector3 zoomInPos)
     {
         float timer = 0f;
+        
         Vector3 startPos = (state == ZoomState.In) ? ZoomOutPos : zoomInPos;
         Vector3 endPos = (state == ZoomState.Out) ? ZoomOutPos : zoomInPos;
         
