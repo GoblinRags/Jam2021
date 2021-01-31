@@ -24,12 +24,13 @@ public class UpgradeUI : MonoBehaviour
     {
         //NOTE: for STEVE to change sfx
         if (BuyButton.IsInteractable())
-            SoundManager.Instance.PlaySfx(0, 1f);
+            SoundManager.Instance.PlaySfx(5, 1f);
     }
 
     public void PressButton()
     {
         //change sfx-STEVE - default button sfx->play unique sfx in Upgrades Script
-        SoundManager.Instance.PlaySfx(4, 1f);
+        // IM NOT PLAYING CLICK SOUND HERE, EACH UPGRADE HAS A UNIQUE SFX
+        SoundManager.Instance.PlaySfx(0, 1f);
     }
 }
