@@ -9,6 +9,8 @@ public class Cosmics : MonoBehaviour
 
     public Type CurType = Type.Unknown;
     public bool IsHabitable;
+
+    public bool SettedVariables;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,11 @@ public class Cosmics : MonoBehaviour
 
     public void SetValues()
     {
+        if (SettedVariables || MainUIScript.Instance.Readings.IsStart)
+            return;
+
+        SettedVariables = true;
+        
         if (CurType != Type.Star)
         {
             float rand = Random.Range(0f, 1f);
@@ -86,20 +93,49 @@ public class Cosmics : MonoBehaviour
                     ele4.Amount = Random.Range(10, 25);
                     Elements.Add(ele4);
                 }
-                else if (randi <= .6f)
+                else if (randi <= .3f)
                 {
+                    Element ele3 = new Element();
+                    ele3.ElementType = Element.Types.Carbon;
+                    ele3.Amount = Random.Range(50, 85);
+                    Elements.Add(ele3);
+                
+                    //Oxygen
+                    Element ele4 = new Element();
+                    ele4.ElementType = Element.Types.Water;
+                    ele4.Amount = Random.Range(2, 15);
+                    Elements.Add(ele4);
+                }
+                else
+                {
+                    Element ele3 = new Element();
+                    ele3.ElementType = Element.Types.Oxygen;
+                    ele3.Amount = Random.Range(15, 25);
+                    Elements.Add(ele3);
+                
+                    //Oxygen
+                    Element ele4 = new Element();
+                    ele4.ElementType = Element.Types.Water;
+                    ele4.Amount = Random.Range(15, 30);
+                    Elements.Add(ele4);
                     
+                    Element ele5 = new Element();
+                    ele5.ElementType = Element.Types.Carbon;
+                    ele5.Amount = Random.Range(5, 10);
+                    Elements.Add(ele5);
+                    IsHabitable = true;
                 }
                 
 
                 break;
         }
+        MainUIScript.Instance.StartAnalyze(Elements, this);
     }
 
     public struct Element
     {
-        public enum Types {Oxygen, Hydrogen, Helium, Carbon}
-
+        public enum Types {Oxygen, Hydrogen, Helium, Carbon, Water}
+        public static string[] Abbreviation = {"O", "H", "He", "C", "H20"};
         public Types ElementType;
         public int Amount;
     }

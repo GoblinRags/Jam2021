@@ -46,7 +46,7 @@ public class MoveCursor : MonoBehaviour
         
         if (CanClick)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) && !MainUIScript.Instance.Readings.IsStart && MainUIScript.Instance.CurState != MainUIScript.States.Analyzing)
             {
                 SoundManager.Instance.PlaySfx(0, .8f);
                 CC.Zoom(RB.position);
