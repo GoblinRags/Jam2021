@@ -20,7 +20,7 @@ public class MoveCursor : MonoBehaviour
 
     public bool CanClick;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
@@ -34,6 +34,7 @@ public class MoveCursor : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 print("pressed");
+                SoundManager.Instance.PlaySfx(0, 1);
             }
         }
     
@@ -87,7 +88,8 @@ public class MoveCursor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.CompareTag("Cosmic"));
-        if (other.CompareTag("Cosmic"))
+        SR.color = Color.blue;
+        if (other.CompareTag("SpaceObj"))
         {
             SR.color = Color.red;
             CanClick = true;
@@ -96,7 +98,8 @@ public class MoveCursor : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Cosmic"))
+        SR.color = Color.green;
+        if (other.CompareTag("SpaceObj"))
         {
             SR.color = Color.white;
             CanClick = false;

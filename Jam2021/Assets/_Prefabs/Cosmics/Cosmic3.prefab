@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2638787845585924445}
   m_Layer: 0
   m_Name: Cosmic3
-  m_TagString: Cosmic
+  m_TagString: SpaceObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

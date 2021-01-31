@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cosmic
+  - SpaceObj
   layers:
   - Default
   - TransparentFX
