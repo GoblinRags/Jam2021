@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5214262222618874359}
   - component: {fileID: 2636639526341260266}
   - component: {fileID: 3323513666476274255}
+  - component: {fileID: 9150917069171745409}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -119,7 +120,64 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2636639526341260266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8267440326103071594}
+        m_TargetAssemblyTypeName: Upgrades, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &9150917069171745409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866624741326873645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910471854556574541}
+          m_TargetAssemblyTypeName: UpgradeUI, Assembly-CSharp
+          m_MethodName: HoverButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1910471854556574541}
+          m_TargetAssemblyTypeName: UpgradeUI, Assembly-CSharp
+          m_MethodName: PressButton
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3053023777104019561
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +799,9 @@ GameObject:
   m_Component:
   - component: {fileID: 936212117580604214}
   - component: {fileID: 1910471854556574541}
+  - component: {fileID: 8267440326103071594}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Upg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,6 +846,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuyButton: {fileID: 3323513666476274255}
   UpgradeLevelText: {fileID: 6420153967198472639}
+--- !u!114 &8267440326103071594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830549636561253420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b2ea4a0dbd88242985e6478aef8fdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpgUIScript: {fileID: 1910471854556574541}
+  Costs: 320000004b00000064000000
+  UpgType: 0
+  UpgLevel: 0
+  CurrentCost: 30
 --- !u!1 &7487389445021469826
 GameObject:
   m_ObjectHideFlags: 0

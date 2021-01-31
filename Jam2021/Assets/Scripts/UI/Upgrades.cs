@@ -6,7 +6,7 @@ using UnityEngine;
 public class Upgrades : MonoBehaviour
 {
     public UpgradeUI UpgUIScript;
-    public int[] Costs;
+    public int[] Costs = {50, 75, 100};
     public enum UpgTypes {Lens, Electrical, Gears, BatteryBoost, Parallax, Sas}
     public UpgTypes UpgType;
     public int UpgLevel;
@@ -30,9 +30,21 @@ public class Upgrades : MonoBehaviour
     {
     }
 
-    void Upgrade()
+    public void Upgrade()
     {
+        //NOTE: For steve to add sfx
+        switch (UpgType)
+        {
+            case UpgTypes.Lens:
+                //play lens sfx
+                break;
+            case UpgTypes.Electrical:
+                //play sfx -etc
+                break;
+        }
         UpgLevel += 1;
+        UpgradeManager.Instance.Money -= CurrentCost;
+        SetText();
         if (UpgLevel >= Costs.Length)
             IsMaxed = true;
         else
