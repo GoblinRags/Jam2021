@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1800737983995858345}
   - component: {fileID: 5646274578440663819}
   - component: {fileID: -2638787845585924445}
+  - component: {fileID: 157146075579231157}
   m_Layer: 0
   m_Name: Cosmic3
   m_TagString: SpaceObj
@@ -151,3 +152,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &157146075579231157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356206613425128069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14426aae34a0571499bc9b23b4d82e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsHabitable: 0
