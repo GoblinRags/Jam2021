@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MoveCursor : MonoBehaviour
 {
+    public List<Collider2D> Cols;
     public Ghost[] GhostScripts;
     public CameraController Controller;
     public Transform Center;
@@ -17,15 +18,20 @@ public class MoveCursor : MonoBehaviour
     public Vector2 ExternalMovement;
 
     private SpriteRenderer SR;
+    public SpriteRenderer InnerSprite;
+    private Animator Anim;
+    public Animator Anim2;
     public CameraController CC;
     public bool CanClick;
-    
-    
+    private static readonly int IsHover = Animator.StringToHash("IsHover");
+
+
     // Start is called before the first frame update
     void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
+        Anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -106,8 +112,11 @@ public class MoveCursor : MonoBehaviour
         Debug.Log(other.CompareTag("Cosmic"));
         if (other.CompareTag("SpaceObj"))
         {
-            SR.color = Color.red;
+            InnerSprite.color = Color.red;
             CanClick = true;
+            Anim.SetBool(IsHover, true);
+            Anim2.SetBool(IsHover, true);
+            Cols.Add(other);
         }
     }
     
@@ -115,10 +124,26 @@ public class MoveCursor : MonoBehaviour
     {
         if (other.CompareTag("SpaceObj"))
         {
-            SR.color = Color.white;
-            CanClick = false;
+            Cols.Remove(other);
+            if (Cols.Count == 0)
+            {
+                InnerSprite.color = Color.white;
+                CanClick = false;
+
+                Anim.SetBool(IsHover, false);
+                Anim2.SetBool(IsHover, false);
+                
+            }
         }
     }
-    
+
+    public void StartHover()
+    {
+        //InnerSprite.enabled = false;
+    }
+    public void BackToIdle()
+    {
+        //InnerSprite.enabled = true;
+    }
     
 }
