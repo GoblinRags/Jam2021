@@ -17,8 +17,10 @@ public class MoveCursor : MonoBehaviour
     public Vector2 ExternalMovement;
 
     private SpriteRenderer SR;
-
+    public CameraController CC;
     public bool CanClick;
+    
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,19 +28,33 @@ public class MoveCursor : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
     }
 
+    void Start()
+    {
+        CC = CameraController.Instance;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
+        
         if (CanClick)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                print("pressed");
                 SoundManager.Instance.PlaySfx(0, 1);
+                CC.Zoom(RB.position);
             }
         }
     
         Vector3 move = Vector3.zero;
+        Movement = move.normalized;
+
+        if (CC.CurState == CameraController.ZoomState.In || CC.IsLerping)
+        {
+            return;
+        }
+            
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             move.x -= 1;
@@ -88,7 +104,6 @@ public class MoveCursor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.CompareTag("Cosmic"));
-        SR.color = Color.blue;
         if (other.CompareTag("SpaceObj"))
         {
             SR.color = Color.red;
@@ -98,11 +113,12 @@ public class MoveCursor : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        SR.color = Color.green;
         if (other.CompareTag("SpaceObj"))
         {
             SR.color = Color.white;
             CanClick = false;
         }
     }
+    
+    
 }
