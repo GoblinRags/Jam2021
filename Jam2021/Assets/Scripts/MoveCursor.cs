@@ -50,6 +50,7 @@ public class MoveCursor : MonoBehaviour
             {
                 SoundManager.Instance.PlaySfx(0, .8f);
                 CC.Zoom(RB.position);
+                Cols[Cols.Count - 1].GetComponent<Cosmics>().SetValues();
             }
         }
     
