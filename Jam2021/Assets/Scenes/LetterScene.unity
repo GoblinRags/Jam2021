@@ -329,7 +329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4816597400848054352, guid: 28a956aee045fe54483449369847c95d, type: 3}
       propertyPath: m_Pitch
-      value: 0.4
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 4816597400848054352, guid: 28a956aee045fe54483449369847c95d, type: 3}
       propertyPath: m_Volume
@@ -387,6 +387,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4816597400848054355, guid: 28a956aee045fe54483449369847c95d, type: 3}
+      propertyPath: Sfx.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816597400848054355, guid: 28a956aee045fe54483449369847c95d, type: 3}
+      propertyPath: Sfx.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 991c9672aca62a74abb588c63e31cecb, type: 3}
     - target: {fileID: 4816597400848054358, guid: 28a956aee045fe54483449369847c95d, type: 3}
       propertyPath: m_Name
       value: AudioManager

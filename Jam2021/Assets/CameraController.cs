@@ -56,6 +56,10 @@ public class CameraController : MonoBehaviour
         {
             move.y -= 1;
         }
+
+        if (move.y != 0 || move.x != 0) {
+            SoundManager.Instance.PlaySfx(2, .05f);
+        }
         
         //float x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
@@ -85,6 +89,9 @@ public class CameraController : MonoBehaviour
         
         float startSize = (state == ZoomState.In) ? ZoomOutSize : ZoomInSize;
         float endSize = (state == ZoomState.Out) ? ZoomOutSize : ZoomInSize;
+
+        float fxTick = 0f;
+
         IsLerping = true;
         while (timer < ZoomTime)
         {
@@ -93,9 +100,16 @@ public class CameraController : MonoBehaviour
             float newSize = Mathf.Lerp(startSize, endSize, Mathf.SmoothStep(0f, 1f, t));
             Vector3 newPos = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1f, t));
             SetCamPos(newPos, newSize);
+
+            fxTick += 1;
+
+            if (fxTick % 30 == 0 && timer < ZoomTime*0.9f) {
+                SoundManager.Instance.PlaySfx(1, .6f);
+            }
             yield return null;
         }
 
+        SoundManager.Instance.PlaySfx(4, .5f);
         SetCamPos(endPos, endSize);
         IsLerping = false;
     }

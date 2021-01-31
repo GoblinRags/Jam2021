@@ -39,7 +39,7 @@ public class Letter : MonoBehaviour
 
                 if (PushTimer >= PushTime)
                 {
-                    SoundManager.Instance.PlaySfx(0, .5f);
+                    SoundManager.Instance.PlaySfx(3, 1f);
                     Vector3 newPos = LetterPos.transform.position;
                     newPos.y = PushAmount + LetterPos.transform.position.y;
                     newPos.y = Mathf.Min(newPos.y, FinalLetterPos);

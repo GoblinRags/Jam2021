@@ -36,6 +36,8 @@ public class Ghost : MonoBehaviour
                     ExtraFunctions(obj);
                 ghost.IsFading = true;
                 ghost.Spawning = false;
+
+                SoundManager.Instance.PlaySfx(3, .25f);
             }
             else
                 GhostTimer += Time.deltaTime;
