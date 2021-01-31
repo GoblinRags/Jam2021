@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour
         //Vector3 move = Vector3.zero;
         // += new Vector3(x, y).normalized * MoveSpeed;
         //transform.position = transform.position + move.normalized * MoveSpeed * Time.deltaTime;
-        Movement = move.normalized;
+                Movement = move.normalized;
 
     }
 
