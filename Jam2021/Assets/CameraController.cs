@@ -37,6 +37,11 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (CurState == CameraController.ZoomState.In || IsLerping)
+        {
+            return;
+        }
+        
         Vector3 move = Vector3.zero;
         if (Input.GetKey(KeyCode.A))
         {
