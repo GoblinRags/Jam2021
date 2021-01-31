@@ -48,7 +48,7 @@ public class MoveCursor : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                SoundManager.Instance.PlaySfx(0, 1);
+                SoundManager.Instance.PlaySfx(0, .8f);
                 CC.Zoom(RB.position);
             }
         }
