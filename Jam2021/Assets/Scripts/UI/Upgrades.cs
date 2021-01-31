@@ -25,6 +25,7 @@ public class Upgrades : MonoBehaviour
     void Start()
     {
         audioSource = SoundManager.Instance.GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
@@ -96,9 +97,9 @@ public class Upgrades : MonoBehaviour
     
     public void HoverButton()
     {
-        //NOTE: for STEVE to change sfx
-        if (UpgUIScript.BuyButton.IsInteractable())
-            SoundManager.Instance.PlaySfx(0, 1f);
+        ////NOTE: for STEVE to change sfx
+        //if (UpgUIScript.BuyButton.IsInteractable())
+        //    SoundManager.Instance.PlaySfx(5, 1f);
         //draw tooltip
         Tooltip.ShowToolTipStatic("Cost: $" + CurrentCost);
 

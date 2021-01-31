@@ -45,7 +45,7 @@ public class Tooltip : MonoBehaviour
            FadeTimer += Time.deltaTime;
         if (FadeTimer >= .25f)
         {
-            Instance.HideTooltip();
+            //Instance.HideTooltip();
         }
     }
 
@@ -62,20 +62,19 @@ public class Tooltip : MonoBehaviour
     private void HideTooltip()
     {
         gameObject.SetActive(false);
-        
     }
 
     public static void ShowToolTipStatic(string text)
     {
         Instance.ShowTooltip(text);
-        CanFade = false;
+        //CanFade = false;
         FadeTimer = 0f;
     }
 
     public static void HideToolTipStatic()
     {
-        //Instance.HideTooltip();
-        CanFade = true;
+        Instance.HideTooltip();
+        //CanFade = true;
     }
     
 }

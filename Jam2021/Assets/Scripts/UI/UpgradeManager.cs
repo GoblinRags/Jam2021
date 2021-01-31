@@ -46,6 +46,12 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    public void AddMoney(int add)
+    {
+        Money += add;
+        MoneyText.text = Money.ToString();
+    }
+    
     public IEnumerator Blink()
     {
         bool flip = false;
