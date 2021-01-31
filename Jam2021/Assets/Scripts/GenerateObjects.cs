@@ -16,6 +16,8 @@ public class GenerateObjects : MonoBehaviour
     public Vector2 Size = new Vector2(1000f, 100f);
 
     public Vector2 ChunkSize = new Vector2(50f, 50f);
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,7 @@ public class GenerateObjects : MonoBehaviour
                     
                     
                 //spawn object at newPos
-                GameObject spaceObj = Instantiate(SpaceObjPrefabs[Random.Range(0, SpaceObjPrefabs.Length)], newPos, Quaternion.identity, ObjHolder);
+                GameObject spaceObj = Instantiate(SpaceObjPrefabs[Random.Range(0, SpaceObjPrefabs.Length)], newPos, Quaternion.identity);
 
                 Color newColor = Color.white;
                 newColor.a = Random.Range(0.2f, 1f);
