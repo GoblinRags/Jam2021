@@ -5,10 +5,29 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController Instance;
     public Rigidbody2D RB;
     public float MoveSpeed = 10f;
 
     public Vector2 Movement;
+    
+    
+    public float ZoomInSize = 1f;
+    public float ZoomOutSize = 5f;
+    public float ZoomTime = 2f;
+    
+    public enum ZoomState {In, Out}
+
+    public Vector3 ZoomOutPos;
+    public Vector3 ZoomInPos;
+    public ZoomState CurState = ZoomState.Out;
+
+    public bool IsLerping;
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,5 +75,49 @@ public class CameraController : MonoBehaviour
         newPos.x += RB.position.x;
         newPos.y += RB.position.y;
         RB.MovePosition(newPos);
+    }
+
+    public IEnumerator Lerp(ZoomState state, Vector3 zoomInPos)
+    {
+        float timer = 0f;
+        Vector3 startPos = (state == ZoomState.In) ? ZoomOutPos : zoomInPos;
+        Vector3 endPos = (state == ZoomState.Out) ? ZoomOutPos : zoomInPos;
+        
+        float startSize = (state == ZoomState.In) ? ZoomOutSize : ZoomInSize;
+        float endSize = (state == ZoomState.Out) ? ZoomOutSize : ZoomInSize;
+        IsLerping = true;
+        while (timer < ZoomTime)
+        {
+            timer += Time.deltaTime;
+            float t = timer / ZoomTime;
+            float newSize = Mathf.Lerp(startSize, endSize, Mathf.SmoothStep(0f, 1f, t));
+            Vector3 newPos = Vector3.Lerp(startPos, endPos, Mathf.SmoothStep(0f, 1f, t));
+            SetCamPos(newPos, newSize);
+            yield return null;
+        }
+
+        SetCamPos(endPos, endSize);
+        IsLerping = false;
+    }
+
+    public void SetCamPos(Vector3 pos, float size)
+    {
+        pos.z = -10;
+        transform.position = pos;
+        Camera.main.orthographicSize = size;
+    }
+
+    public void Zoom(Vector3 zoomInPos)
+    {
+        if (!IsLerping)
+        {
+            if (CurState == ZoomState.Out)
+            {
+                ZoomOutPos = transform.position;
+                ZoomInPos = zoomInPos;
+            }
+            CurState = CurState == ZoomState.In ? ZoomState.Out : ZoomState.In;
+            StartCoroutine(Lerp(CurState, zoomInPos));
+        }
     }
 }

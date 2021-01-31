@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MoveCursor : MonoBehaviour
 {
+    public List<Collider2D> Cols;
     public Ghost[] GhostScripts;
     public CameraController Controller;
     public Transform Center;
@@ -17,28 +18,49 @@ public class MoveCursor : MonoBehaviour
     public Vector2 ExternalMovement;
 
     private SpriteRenderer SR;
-
+    public SpriteRenderer InnerSprite;
+    private Animator Anim;
+    public Animator Anim2;
+    public CameraController CC;
     public bool CanClick;
+    private static readonly int IsHover = Animator.StringToHash("IsHover");
+
+
     // Start is called before the first frame update
     void Awake()
     {
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
+        Anim = GetComponent<Animator>();
+    }
+
+    void Start()
+    {
+        CC = CameraController.Instance;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (CanClick)
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                print("pressed");
                 SoundManager.Instance.PlaySfx(0, 1);
+                CC.Zoom(RB.position);
             }
         }
     
         Vector3 move = Vector3.zero;
+        Movement = move.normalized;
+
+        if (CC.CurState == CameraController.ZoomState.In || CC.IsLerping)
+        {
+            return;
+        }
+            
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             move.x -= 1;
@@ -88,21 +110,40 @@ public class MoveCursor : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.CompareTag("Cosmic"));
-        SR.color = Color.blue;
         if (other.CompareTag("SpaceObj"))
         {
-            SR.color = Color.red;
+            InnerSprite.color = Color.red;
             CanClick = true;
+            Anim.SetBool(IsHover, true);
+            Anim2.SetBool(IsHover, true);
+            Cols.Add(other);
         }
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        SR.color = Color.green;
         if (other.CompareTag("SpaceObj"))
         {
-            SR.color = Color.white;
-            CanClick = false;
+            Cols.Remove(other);
+            if (Cols.Count == 0)
+            {
+                InnerSprite.color = Color.white;
+                CanClick = false;
+
+                Anim.SetBool(IsHover, false);
+                Anim2.SetBool(IsHover, false);
+                
+            }
         }
     }
+
+    public void StartHover()
+    {
+        //InnerSprite.enabled = false;
+    }
+    public void BackToIdle()
+    {
+        //InnerSprite.enabled = true;
+    }
+    
 }

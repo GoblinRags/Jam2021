@@ -53,6 +53,8 @@ public class FadeScenes : MonoBehaviour
                 yield return null;
             }
         }
+
+        
         FadeOutImage.enabled = dir == FadeDir.In;
     }
 
