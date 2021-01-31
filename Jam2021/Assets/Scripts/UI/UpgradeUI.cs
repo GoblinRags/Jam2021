@@ -20,16 +20,5 @@ public class UpgradeUI : MonoBehaviour
         
     }
 
-    public void HoverButton()
-    {
-        //NOTE: for STEVE to change sfx
-        if (BuyButton.IsInteractable())
-            SoundManager.Instance.PlaySfx(0, 1f);
-    }
-
-    public void PressButton()
-    {
-        //change sfx-STEVE - default button sfx->play unique sfx in Upgrades Script
-        SoundManager.Instance.PlaySfx(4, 1f);
-    }
+    
 }

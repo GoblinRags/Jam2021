@@ -48,7 +48,11 @@ public class Upgrades : MonoBehaviour
         if (UpgLevel >= Costs.Length)
             IsMaxed = true;
         else
+        {
             CurrentCost = Costs[UpgLevel];
+            Tooltip.ShowToolTipStatic("Cost: $" + CurrentCost);
+        }
+            
         UpgradeManager.Instance.CheckButtonsCost();
     }
 
@@ -63,5 +67,28 @@ public class Upgrades : MonoBehaviour
     public void SetButton(bool enoughMoney)
     {
         UpgUIScript.BuyButton.interactable = enoughMoney && !IsMaxed;
+    }
+    
+    
+    public void HoverButton()
+    {
+        //NOTE: for STEVE to change sfx
+        if (UpgUIScript.BuyButton.IsInteractable())
+            SoundManager.Instance.PlaySfx(0, 1f);
+        //draw tooltip
+        Tooltip.ShowToolTipStatic("Cost: $" + CurrentCost);
+
+    }
+
+    public void PressButton()
+    {
+        //change sfx-STEVE - default button sfx->play unique sfx in Upgrades Script
+        SoundManager.Instance.PlaySfx(4, 1f);
+    }
+    
+    public void ExitButton()
+    {
+        //hide tooltip
+        Tooltip.HideToolTipStatic();
     }
 }
