@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/3DTest.unity
+    guid: 7a7d0626689efa04eab8722954fa81fa
+  - enabled: 1
     path: Assets/Scenes/LetterScene.unity
     guid: 0e1afb683f5ee0340ba9b618f07f5f11
   - enabled: 1
