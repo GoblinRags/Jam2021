@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
+
 {
+    
     public Image ClickButton;
     public TextMeshProUGUI ClickButtonText;
     public TextMeshProUGUI MoneyText;
@@ -23,6 +26,7 @@ public class UpgradeManager : MonoBehaviour
     void Start()
     {
         CheckButtonsCost();
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -67,6 +71,7 @@ public class UpgradeManager : MonoBehaviour
     public void ContinuePress()
     {
         IsBlinking = false;
+        SceneManager.LoadScene("EndLetterScene");
         //next scene
     }
     

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class MoveCursor : MonoBehaviour
 {
+    public AudioSource Game;
+    public AudioSource Shop;
+    
     public List<Collider2D> Cols;
     public Ghost[] GhostScripts;
     public CameraController Controller;
@@ -43,7 +46,21 @@ public class MoveCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            UpgradeManager.Instance.gameObject.SetActive(!UpgradeManager.Instance.gameObject.activeSelf);
+            if (Game.enabled)
+            {
+                Game.enabled = false;
+                Shop.enabled = true;
+            }
+            else
+            {
+                Shop.enabled = false;
+                Game.enabled = true;
+            }
+        }
+
         if (CanClick)
         {
             if (Input.GetKeyDown(KeyCode.Return) && !MainUIScript.Instance.Readings.IsStart && MainUIScript.Instance.CurState != MainUIScript.States.Analyzing)
