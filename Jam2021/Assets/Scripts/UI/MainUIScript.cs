@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainUIScript : MonoBehaviour
@@ -117,5 +118,10 @@ public class MainUIScript : MonoBehaviour
         yield return new WaitForSeconds(5f);
         OutComeText.enabled = false;
         
+    }
+
+    public void EndLetterScene()
+    {
+        SceneManager.LoadScene("EndLetterScene");
     }
 }
